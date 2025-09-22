@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback Form</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div class="container">
+        <!-- Student Feedback Form -->
+        <div class="panel">
+            <h2>Student Feedback Form</h2>
+            
+            <div class="instructions">
+                <p><strong>Instructions:</strong> Please provide your feedback by checking the topics that were covered in your class and add your feedback below.</p>
+            </div>
+
+<div class="status-bar">
+                <div class="topics-count">Total Topics: <span id="topicsCount">0</span></div>
+            </div>
+
+            
+            <form id="feedbackForm">
+                <div class="form-section">
+                    <label for="studentName">Student Name:</label>
+                    <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name">
+                </div>
+
+                <div class="form-section">
+                    <h3>Topics Covered</h3>
+                    <p>Please check the topics that were covered in your class:</p>
+                    <div id="loadingTopics" class="loading">Loading topics...</div>
+                    <div id="topicsError" class="error hidden"></div>
+                    <div class="topics-container" id="studentTopicsContainer">
+                        <!-- Student topics will be added here -->
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <label for="feedback">Your Feedback:</label>
+                    <textarea id="feedback" name="feedback" rows="5" placeholder="Please share your thoughts about the class, trainer, or any suggestions for improvement..."></textarea>
+                </div>
+
+                <button type="submit" id="submitBtn">Submit Feedback</button>
+            </form>
+
+            <div id="successMessage" class="success-message hidden">
+                <h2>Thank you for your feedback!</h2>
+                <p>Your feedback has been recorded and a PDF report has been generated.</p>
+                <a id="downloadLink" href="#" class="btn-download">Download PDF Report</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- PDF Template (hidden) -->
+    <div id="pdfTemplate" class="pdf-template">
+        <h2>Student Feedback Report</h2>
+        <div class="student-name-header" id="pdfStudentName"></div>
+        
+        <div class="topics-container" id="pdf-topicsContainer">
+            <!-- PDF content will be added here -->
+        </div>
+
+        <div class="pdf-footer">
+            Report generated for UI/UX Designing (Trainer: Balaji)
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
