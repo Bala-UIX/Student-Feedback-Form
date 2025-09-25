@@ -19,15 +19,21 @@
                 <p><strong>Instructions:</strong> Please provide your feedback by checking the topics that were covered in your class and add your feedback below.</p>
             </div>
 
-<div class="status-bar">
+            <div class="status-bar">
                 <div class="topics-count">Total Topics: <span id="topicsCount">0</span></div>
             </div>
 
             
             <form id="feedbackForm">
-                <div class="form-section">
-                    <label for="studentName">Student Name (Phone Number):</label>
-                    <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name and phone number">
+                <div class="form-section name-phone-row">
+                    <div class="name-container">
+                        <label for="studentName">Student Name:</label>
+                        <input type="text" id="studentName" name="studentName" required placeholder="Enter your full name">
+                    </div>
+                    <div class="phone-container">
+                        <label for="studentPhone">Phone Number:</label>
+                        <input type="tel" id="studentPhone" name="studentPhone" required placeholder="Enter your phone number">
+                    </div>
                 </div>
 
                 <div class="form-section">
@@ -59,7 +65,10 @@
     <!-- PDF Template (hidden) -->
     <div id="pdfTemplate" class="pdf-template">
         <h2>Student Feedback Report</h2>
-        <div class="student-name-header" id="pdfStudentName"></div>
+        <div class="student-info-header">
+            <span id="pdfStudentName"></span>
+            <span id="pdfStudentPhone" class="phone-right"></span>
+        </div>
         
         <div class="topics-container" id="pdf-topicsContainer">
             <!-- PDF content will be added here -->
