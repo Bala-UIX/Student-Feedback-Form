@@ -8,6 +8,7 @@ const errorDiv = document.getElementById('topicsError');
 const topicsCount = document.getElementById('topicsCount');
 const pdfTemplate = document.getElementById('pdfTemplate');
 const pdfStudentName = document.getElementById('pdfStudentName');
+const pdfStudentPhone = document.getElementById('pdfStudentPhone');
 
 // JSON data embedded directly to avoid CORS issues
 const topicsData = {
@@ -187,6 +188,7 @@ feedbackForm.addEventListener('submit', function(e) {
     
     // Get form data
     const studentName = document.getElementById('studentName').value;
+    const studentPhone = document.getElementById('studentPhone').value;
     const feedback = document.getElementById('feedback').value;
     
     // Get topics data
@@ -207,7 +209,7 @@ feedbackForm.addEventListener('submit', function(e) {
     });
     
     // Generate PDF
-    generatePDF(studentName, topicsData, feedback);
+    generatePDF(studentName, studentPhone, topicsData, feedback);
     
     // Show success message
     feedbackForm.classList.add('hidden');
@@ -215,9 +217,10 @@ feedbackForm.addEventListener('submit', function(e) {
 });
 
 // Generate PDF using html2canvas and jsPDF with proper pagination
-function generatePDF(studentName, topics, feedback) {
-    // Set student name in PDF template
+function generatePDF(studentName, studentPhone, topics, feedback) {
+    // Set student name and phone in PDF template
     pdfStudentName.textContent = `Student Name: ${studentName}`;
+    pdfStudentPhone.textContent = studentPhone ? `Phone: ${studentPhone}` : '';
     
     // Calculate percentage
     const totalTopics = topics.length;
@@ -245,7 +248,7 @@ function generatePDF(studentName, topics, feedback) {
             topicItem.className = 'topic-item';
             
             const statusIcon = document.createElement('span');
-            statusIcon.textContent = '✓ ';
+            statusIcon.textContent = 'âœ“ ';
             statusIcon.style.color = '#2ecc71';
             statusIcon.style.marginRight = '10px';
             statusIcon.style.fontSize = '16px';
@@ -282,7 +285,7 @@ function generatePDF(studentName, topics, feedback) {
             topicItem.className = 'topic-item';
             
             const statusIcon = document.createElement('span');
-            statusIcon.textContent = '✗ ';
+            statusIcon.textContent = 'âœ— ';
             statusIcon.style.color = '#e74c3c';
             statusIcon.style.marginRight = '10px';
             statusIcon.style.fontSize = '16px';
@@ -408,6 +411,14 @@ function generatePDF(studentName, topics, feedback) {
             const pdfBlob = doc.output('blob');
             const url = URL.createObjectURL(pdfBlob);
             downloadLink.href = url;
-            downloadLink.download = `${studentName.replace(/\s+/g, '_')}_Feedback_Report.pdf`;
-        });
+
+             // Generate filename with student name and phone number
+        let fileName = `${studentName.replace(/\s+/g, '_')}`;
+        if (studentPhone) {
+            fileName += `_${studentPhone.replace(/\s+/g, '')}`;
+        }
+        fileName += '_Feedback_Report.pdf';
+        
+        downloadLink.download = fileName;
+    });
 }
