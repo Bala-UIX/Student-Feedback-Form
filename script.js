@@ -248,7 +248,7 @@ function generatePDF(studentName, studentPhone, topics, feedback) {
             topicItem.className = 'topic-item';
             
             const statusIcon = document.createElement('span');
-            statusIcon.textContent = 'âœ“ ';
+            statusIcon.textContent = '✓ ';
             statusIcon.style.color = '#2ecc71';
             statusIcon.style.marginRight = '10px';
             statusIcon.style.fontSize = '16px';
@@ -285,7 +285,7 @@ function generatePDF(studentName, studentPhone, topics, feedback) {
             topicItem.className = 'topic-item';
             
             const statusIcon = document.createElement('span');
-            statusIcon.textContent = 'âœ— ';
+            statusIcon.textContent = '✗ ';
             statusIcon.style.color = '#e74c3c';
             statusIcon.style.marginRight = '10px';
             statusIcon.style.fontSize = '16px';
