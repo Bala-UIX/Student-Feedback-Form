@@ -56,6 +56,7 @@ label {
 }
 
 input[type="text"],
+input[type="tel"],
 textarea {
     width: 100%;
     padding: 12px;
@@ -70,6 +71,16 @@ input:focus, textarea:focus {
     border-color: #3498db;
     outline: none;
     box-shadow: 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+/* Name and Phone row styling */
+.name-phone-row {
+    display: flex;
+    gap: 20px;
+}
+
+.name-container, .phone-container {
+    flex: 1;
 }
 
 .topics-container {
@@ -252,13 +263,20 @@ button[type="submit"]:hover {
     max-width: 100%;
 }
 
-.student-name-header {
+.student-info-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     font-size: 18px;
     font-weight: bold;
     color: #2c3e50;
     margin-bottom: 15px;
     padding-bottom: 10px;
     border-bottom: 2px solid #3498db;
+}
+
+.phone-right {
+    text-align: right;
 }
 
 .pdf-footer {
